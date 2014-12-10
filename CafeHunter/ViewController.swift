@@ -174,7 +174,10 @@ class ViewController: UIViewController {
                         var cafes: [Cafe] = []
                         for cafeJSON in data {
                             if let cafeJSON = cafeJSON.object {
-//                            // TODO: Create Cafe and add to array
+                                // Create Cafe and add to array
+                                if let cafe = Cafe.fromJSON(cafeJSON){
+                                    cafes.append(cafe)
+                                }
                             }
                         }
                         
