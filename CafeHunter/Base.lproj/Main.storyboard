@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OI8-Ur-YYC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OI8-Ur-YYC">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--CafeHunter-->
@@ -13,11 +13,38 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RfI-YQ-oSa">
+                                <rect key="frame" x="0.0" y="130" width="600" height="470"/>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DB4-bc-KQr" customClass="FBLoginView">
+                                <rect key="frame" x="150" y="72" width="300" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="3wx-mZ-g6C"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="DIc-Fl-5Ec"/>
+                                    <constraint firstAttribute="height" constant="50" id="jvI-Ef-18A"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="viZ-Y1-hPR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DB4-bc-KQr" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="2Zx-59-aN7"/>
+                            <constraint firstAttribute="trailing" secondItem="RfI-YQ-oSa" secondAttribute="trailing" id="6BG-Nl-hxn"/>
+                            <constraint firstAttribute="centerX" secondItem="DB4-bc-KQr" secondAttribute="centerX" id="DdK-On-8dj"/>
+                            <constraint firstAttribute="bottom" secondItem="RfI-YQ-oSa" secondAttribute="bottom" id="Zg9-Mn-Gx6"/>
+                            <constraint firstItem="RfI-YQ-oSa" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="66" id="kZN-4g-88e"/>
+                            <constraint firstItem="RfI-YQ-oSa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="w53-M9-5of"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CafeHunter" id="owj-Fn-8WE"/>
+                    <connections>
+                        <outlet property="loginView" destination="DB4-bc-KQr" id="Zhh-iW-NnZ"/>
+                        <outlet property="mapView" destination="RfI-YQ-oSa" id="okA-E9-DfC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

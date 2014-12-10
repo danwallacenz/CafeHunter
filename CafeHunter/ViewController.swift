@@ -25,6 +25,12 @@ import MapKit
 
 class ViewController: UIViewController {
   
+@IBOutlet var mapView: MKMapView!
+    // turn into = weak var mapView: MKMapView!
+    
+@IBOutlet var loginView: FBLoginView!
+    //turn into = weak var loginView: FBLoginView!
+    
   private var locationManager: CLLocationManager!
   
   override func viewDidLoad() {
@@ -32,6 +38,8 @@ class ViewController: UIViewController {
     
     self.locationManager = CLLocationManager()
     self.locationManager.delegate = self
+    
+    self.mapView.delegate = self
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -54,4 +62,8 @@ extension ViewController: CLLocationManagerDelegate {
     self.checkLocationAuthorizationStatus()
   }
   
+}
+
+extension ViewController: MKMapViewDelegate {
+    
 }
