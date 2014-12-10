@@ -38,6 +38,8 @@ class ViewController: UIViewController {
     // you might not have found the location yet.
     private var lastLocation: CLLocation?
     
+    private var cafes = [Cafe]()
+    
     // This declares a constant that you’ll use to determine how far to search for
     // cafés from the user’s current location, as well as how far the user has 
     // to move before the app automatically refreshes the cafés. The distance here is in meters.
@@ -99,8 +101,92 @@ class ViewController: UIViewController {
         }
         
         // TODO
-    }
 
+       // Construct the URL that you’re going to use to ask Facebook for the places around the current location that match the search term “café.”
+        // Notice that the use of string interpolation makes it simple to build a complex string.
+        // This code would be much more complicated to read if it used NSString’s stringWithFormat:.
+        var urlString = "https://graph.facebook.com/v2.0/search/"
+        urlString += "?access_token="
+        urlString +=
+            "\(FBSession.activeSession().accessTokenData.accessToken)"
+        urlString += "&type=place"
+        urlString += "&q=cafe"
+        urlString += "&center=\(location.coordinate.latitude),"
+        urlString += "\(location.coordinate.longitude)"
+        urlString += "&distance=\(Int(searchDistance))"
+        
+        // Convert the string into an NSURL. Even though the parameter to NSURL’s initializer is an NSString,
+        // it still works with a Swift String object.
+        // This is because String and NSString are seamlessly bridged.
+        // You can use one in place of the other and Swift will handle the conversion for you—rather handy when using Cocoa APIs!
+        let url = NSURL(string: urlString)!
+        
+        println("Requesting from FB with URL: \(url)")
+        
+        let request = NSURLRequest(URL: url)
+        NSURLConnection.sendAsynchronousRequest(
+            request,
+            queue: NSOperationQueue.mainQueue())
+        {
+            (response: NSURLResponse!, data: NSData!, error: NSError!)
+              -> Void in
+            
+            //  If there was an error fetching the data, such as the internet connection is offline, then we show an alert and return.
+            if error != nil {
+                let alert = UIAlertController(
+                    title: "Oops!",
+                    message: "An error occured",
+                    preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(
+                    title: "OK",
+                    style: .Default,
+                    handler: nil))
+                self.presentViewController(
+                    alert, animated: true, completion: nil)
+                return
+            }
+            // This section of code performs JSON deserialization on the data returned from the Facebook graph API.
+            // Existing Objective-C developers will be familiar with the error parameter here, which is part of a common pattern in Objective-C Cocoa development.
+            // Because methods can’t have multiple return values, you pass a pointer to an NSError object into the method and then if there’s an error, you assign the reference to that error.
+            // This pattern is no longer necessary in Swift, but it remains because all the Cocoa APIs still use it.
+            // Swift handles this pattern neatly by allowing you to pass in a reference to an optional NSError, which gets sets in the same way if there’s an error.
+            var error: NSError?
+            let jsonObject: AnyObject! =
+                NSJSONSerialization.JSONObjectWithData(
+                    data, options: NSJSONReadingOptions(0), error: &error)
+            
+            //  You’re expecting the value returned from the JSON deserialization to be a JSON object—that is, a dictionary of strings to other JSON values types such as numbers, strings, arrays, objects and so forth.
+            //  You know this because, like most APIs, that’s what the Facebook graph API returns. 
+            //  This if-statement attempts to cast the jsonObject variable into a dictionary of String to AnyObject.
+            //  If it is successfully downcast and there’s no error, then you’ve successfully retrieved valid data from the API.
+            if let jsonObject = jsonObject as? [String:AnyObject] {
+                if error == nil {
+                    println("Data returned from FB:\n\(jsonObject)")
+
+                    
+                    //  This line uses the JSONValue helper defined in the file JSON.swift
+                    //  You don’t know what types are inside a JSON object without looking at it. 
+                    //  You could extract each bit of information manually and check its type, but the Swift code for that would be rather nested, with many if-statements doing downcast checks. 
+                    //  JSONValue helps out by parsing the entire JSON structure into an enumeration with a case for each type that JSON supports.
+                    if let data = JSONValue.fromObject(jsonObject)?["data"]?.array
+                    {
+                        // Create a new array to hold the Cafe objects that you’ll parse out of the data array.
+                        var cafes: [Cafe] = []
+                        for cafeJSON in data {
+                            if let cafeJSON = cafeJSON.object {
+//                            // TODO: Create Cafe and add to array
+                            }
+                        }
+                        
+                        // Remove the existing cafés from the map and add the new ones.
+                        self.mapView.removeAnnotations(self.cafes)
+                        self.cafes = cafes
+                        self.mapView.addAnnotations(cafes)
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
