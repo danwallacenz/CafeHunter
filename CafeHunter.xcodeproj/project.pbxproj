@@ -14,6 +14,7 @@
 		C94AE2FE1975BDB3003425A7 /* CafeHunterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AE2FD1975BDB3003425A7 /* CafeHunterTests.swift */; };
 		C94AE3111975C21A003425A7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94AE3101975C21A003425A7 /* FacebookSDK.framework */; };
 		C94AE31919770803003425A7 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AE31819770803003425A7 /* JSON.swift */; };
+		CB2291BD1A383DC000A031FA /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2291BC1A383DC000A031FA /* Cafe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		C94AE3101975C21A003425A7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
 		C94AE31819770803003425A7 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		CB2291BB1A37FAFF00A031FA /* CafeHunter-ObjCBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CafeHunter-ObjCBridging.h"; sourceTree = "<group>"; };
+		CB2291BC1A383DC000A031FA /* Cafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				C94AE2EA1975BDB3003425A7 /* AppDelegate.swift */,
 				C94AE2EC1975BDB3003425A7 /* ViewController.swift */,
+				CB2291BC1A383DC000A031FA /* Cafe.swift */,
 				C94AE31819770803003425A7 /* JSON.swift */,
 				C94AE2EE1975BDB3003425A7 /* Main.storyboard */,
 				C94AE2F11975BDB3003425A7 /* Images.xcassets */,
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB2291BD1A383DC000A031FA /* Cafe.swift in Sources */,
 				C94AE2ED1975BDB3003425A7 /* ViewController.swift in Sources */,
 				C94AE2EB1975BDB3003425A7 /* AppDelegate.swift in Sources */,
 				C94AE31919770803003425A7 /* JSON.swift in Sources */,
