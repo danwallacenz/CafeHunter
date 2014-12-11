@@ -20,6 +20,13 @@ class  Cafe: NSObject {
     let city: String
     let zip: String
     
+    // This defines a computed property of type NSURL.
+    var pictureURL: NSURL {
+        return NSURL(string:
+            "http://graph.facebook.com/place/picture?id=\(self.fbid)" +
+            "&type=large")!
+    }
+    
     init(fbid: String, name: String,
         location: CLLocationCoordinate2D,
         street: String, city: String, zip: String)

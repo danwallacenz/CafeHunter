@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OI8-Ur-YYC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--CafeHunter-->
@@ -49,6 +50,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="529" y="677"/>
+        </scene>
+        <!--Cafe View Controller-->
+        <scene sceneID="WsF-Rj-54j">
+            <objects>
+                <viewController storyboardIdentifier="CafeView" id="IJd-vR-bia" customClass="CafeViewController" customModule="CafeHunter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vrn-id-XaZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="mCA-XA-9tv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ull-ME-Y9I">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5nM-du-Ani">
+                                <rect key="frame" x="200" y="40" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="DoG-64-ksX"/>
+                                    <constraint firstAttribute="width" constant="200" id="Ndh-Hb-Wns"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jti-0V-nDl">
+                                <rect key="frame" x="16" y="248" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Max-4I-h4s">
+                                <rect key="frame" x="16" y="286" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SN7-ig-Lta">
+                                <rect key="frame" x="16" y="315" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kp6-X7-REV">
+                                <rect key="frame" x="16" y="344" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Fn-QY-3hd">
+                                <rect key="frame" x="283" y="550" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Max-4I-h4s" firstAttribute="trailing" secondItem="Ull-ME-Y9I" secondAttribute="trailingMargin" id="2Ff-sY-xKA"/>
+                            <constraint firstItem="kp6-X7-REV" firstAttribute="trailing" secondItem="Ull-ME-Y9I" secondAttribute="trailingMargin" id="4dt-xv-oDp"/>
+                            <constraint firstItem="Jti-0V-nDl" firstAttribute="top" secondItem="5nM-du-Ani" secondAttribute="bottom" constant="8" id="8kR-tc-4An"/>
+                            <constraint firstAttribute="centerX" secondItem="Max-4I-h4s" secondAttribute="centerX" id="Apb-AN-KRk"/>
+                            <constraint firstItem="Jti-0V-nDl" firstAttribute="trailing" secondItem="Ull-ME-Y9I" secondAttribute="trailingMargin" id="Fn6-f6-uKb"/>
+                            <constraint firstItem="kp6-X7-REV" firstAttribute="top" secondItem="SN7-ig-Lta" secondAttribute="bottom" constant="8" id="HMv-FC-lhM"/>
+                            <constraint firstItem="mCA-XA-9tv" firstAttribute="top" secondItem="7Fn-QY-3hd" secondAttribute="bottom" constant="20" id="I7M-Ts-cCW"/>
+                            <constraint firstItem="kp6-X7-REV" firstAttribute="leading" secondItem="Ull-ME-Y9I" secondAttribute="leadingMargin" id="P7E-Us-vro"/>
+                            <constraint firstAttribute="centerX" secondItem="7Fn-QY-3hd" secondAttribute="centerX" id="Qjl-bY-b5l"/>
+                            <constraint firstItem="5nM-du-Ani" firstAttribute="top" secondItem="vrn-id-XaZ" secondAttribute="bottom" constant="20" id="SP1-c2-9GA"/>
+                            <constraint firstAttribute="centerX" secondItem="kp6-X7-REV" secondAttribute="centerX" id="X5u-fk-CAu"/>
+                            <constraint firstItem="Jti-0V-nDl" firstAttribute="leading" secondItem="Ull-ME-Y9I" secondAttribute="leadingMargin" id="XdR-7O-dx7"/>
+                            <constraint firstItem="SN7-ig-Lta" firstAttribute="trailing" secondItem="Ull-ME-Y9I" secondAttribute="trailingMargin" id="lrf-NB-0U1"/>
+                            <constraint firstItem="SN7-ig-Lta" firstAttribute="leading" secondItem="Ull-ME-Y9I" secondAttribute="leadingMargin" id="mE6-5S-0aw"/>
+                            <constraint firstAttribute="centerX" secondItem="SN7-ig-Lta" secondAttribute="centerX" id="oSR-gP-rka"/>
+                            <constraint firstItem="Max-4I-h4s" firstAttribute="leading" secondItem="Ull-ME-Y9I" secondAttribute="leadingMargin" id="qBl-qe-AaB"/>
+                            <constraint firstAttribute="centerX" secondItem="5nM-du-Ani" secondAttribute="centerX" id="uq2-4T-d3h"/>
+                            <constraint firstItem="Max-4I-h4s" firstAttribute="top" secondItem="Jti-0V-nDl" secondAttribute="bottom" constant="8" id="vUb-EJ-pIO"/>
+                            <constraint firstAttribute="centerX" secondItem="Jti-0V-nDl" secondAttribute="centerX" id="vjH-jE-0VD"/>
+                            <constraint firstItem="SN7-ig-Lta" firstAttribute="top" secondItem="Max-4I-h4s" secondAttribute="bottom" constant="8" id="xN2-2B-GDJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="SN7-ig-Lta" id="KcK-wB-ia4"/>
+                        <outlet property="imageView" destination="5nM-du-Ani" id="5t3-SF-7QX"/>
+                        <outlet property="nameLabel" destination="Jti-0V-nDl" id="xiL-Hl-6N9"/>
+                        <outlet property="streetLabel" destination="Max-4I-h4s" id="RTv-ZR-JtG"/>
+                        <outlet property="zipLabel" destination="kp6-X7-REV" id="XgC-TJ-c7K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qv9-RO-PF6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="682"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mRe-Nb-tQC">

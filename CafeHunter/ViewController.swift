@@ -125,6 +125,7 @@ class ViewController: UIViewController {
         // This is because String and NSString are seamlessly bridged.
         // You can use one in place of the other and Swift will handle the conversion for you—rather handy when using Cocoa APIs!
         let url = NSURL(string: urlString)!
+//        let url = NSURL(string: urlString)
         
         println("Requesting from FB with URL: \(url)")
         
@@ -262,6 +263,44 @@ extension ViewController: MKMapViewDelegate {
             self.centerMapOnLocation(newLocation)
             self.fetchCafesAroundLocation(newLocation)
         }
+    }
+    
+    
+    // This map view delegate method is called when the map view needs a view to display an annotation.
+    func mapView(mapView: MKMapView!,
+            viewForAnnotation annotation: MKAnnotation!)
+                -> MKAnnotationView!
+    {
+        //  You only handle Cafe annotations in this view controller. Other annotations, such as the user location (blue dot), you want the map view itself to handle. You therefore use a conditional downcast to pick out the annotations that are Cafe objects.
+        if let annotation = annotation as? Cafe {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            
+            // Map views maintain a reuse queue (similar to UITableView) so that you don’t need to keep creating annotations as new annotations come into view.
+            // Instead, you can attempt to dequeue an existing annotation.
+            // If there’s one in the reuse queue, then you want to use that. 
+            // You use another conditional downcast to ensure that the view is of type MKPinAnnotationView.
+            if let dequeuedView =
+                mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+                    as? MKPinAnnotationView
+            {
+                // If there is a view dequeued, then you only need to set the annotation on the
+                //  view.
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                //  If no view could be dequeued, you create a new MKPinAnnotationView and set it up to show a button as the callout accessory.
+                view = MKPinAnnotationView(annotation: annotation,
+                                            reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView =
+                    UIButton.buttonWithType(.DetailDisclosure) as UIView
+            }
+            // Finally, you return the annotation view.
+            return view
+        }
+        return nil
     }
 }
 
