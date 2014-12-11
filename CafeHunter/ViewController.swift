@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     // This declares a constant that you’ll use to determine how far to search for
     // cafés from the user’s current location, as well as how far the user has 
     // to move before the app automatically refreshes the cafés. The distance here is in meters.
-    let searchDistance: CLLocationDistance = 3000
+    let searchDistance: CLLocationDistance = 1000
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,11 @@ class ViewController: UIViewController {
         self.locationManager.delegate = self
 
         self.mapView.delegate = self
+        
+        // Add a refresh button
+        self.navigationItem.leftBarButtonItem  =
+            UIBarButtonItem(barButtonSystemItem: .Refresh,
+                target: self, action: "refresh:")
     }
   
     override func viewDidAppear(animated: Bool) {
@@ -190,6 +195,25 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    func refresh(sender: UIBarButtonItem) {
+        if let location = self.lastLocation {
+            self.centerMapOnLocation(location)
+            self.fetchCafesAroundLocation(location)
+        } else {
+            let alert =
+                UIAlertController(title: "Error",
+                message: "No location yet!",
+                preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                style: .Default,
+                handler: nil))
+            self.presentViewController(alert,
+                animated: true,
+                completion: nil)
+        }
+    }
+    
 }
 
 extension ViewController: CLLocationManagerDelegate {
