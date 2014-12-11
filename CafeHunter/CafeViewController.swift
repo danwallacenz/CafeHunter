@@ -8,6 +8,18 @@
 
 import UIKit
 
+
+    // This defines a protocol to which objects can conform to be told when the user is finished with the café detail view and it should be dismissed.
+    // The optional tells the compiler that the method doesn’t have to be defined, leaving it up to the implementation class to decide whether it needs the method or not.
+
+    // If you want optional methods in your protocol, you have to declare the protocol as @objc.
+    // Marking the protocol as @objc enables Swift to put various runtime checks in place to check for conformance to the protocol and to check that various methods exist to support optional functionality.
+@objc protocol CafeViewControllerDelegate {
+    optional func cafeViewControllerDidFinish(
+        viewController: CafeViewController)
+}
+
+
 class CafeViewController: UIViewController {
 
     // This defines a variable of type optional-Cafe. 
@@ -21,6 +33,8 @@ class CafeViewController: UIViewController {
             self.setupWithCafe()
         }
     }
+    // Marked as weak, which is standard practice for delegate properties to avoid retain cycles.
+    weak var delegate: CafeViewControllerDelegate?
     
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
@@ -82,5 +96,9 @@ class CafeViewController: UIViewController {
                         self.imageView.image = image
                 }
         }
+
+    }
+    @IBAction private func back(sender: AnyObject) {
+        self.delegate?.cafeViewControllerDidFinish?(self)
     }
 }

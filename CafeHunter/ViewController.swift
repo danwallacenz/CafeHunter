@@ -302,9 +302,46 @@ extension ViewController: MKMapViewDelegate {
         }
         return nil
     }
+    
+    func mapView(mapView: MKMapView!,
+        annotationView view: MKAnnotationView!,
+        calloutAccessoryControlTapped control: UIControl!)
+    {
+        //  Instantiate a new CafeViewController by asking the storyboard to create one from the Storyboard ID you already set.
+        // This could fail and return nil, so you employ the usual conditional optional unwrapping.
+        if let viewController =
+            self.storyboard!.instantiateViewControllerWithIdentifier(
+                "CafeView") as? CafeViewController
+        {
+            
+            // Check the annotation from the tapped view to see if it’s a Cafe object.
+            // You know it is, but the compiler doesn’t because the type of the annotation property is MKAnnotation.
+            if let cafe = view.annotation as? Cafe {
+                
+                // Set up the view controller and present it.
+                viewController.cafe = cafe
+                
+                // Notice that you’ve declared the ViewController instance as the delegate of the CafeViewController.
+                // You haven’t defined this delegate yet, 
+                // but you’re going to use it to tell the ViewController when the user has finished with the CafeViewController—
+                // that is, when the user has tapped the Back button.
+                viewController.delegate = self
+                
+                self.presentViewController(viewController,
+                    animated: true,
+                    completion: nil
+                )
+            }
+        }
+    }
 }
 
-
+extension ViewController: CafeViewControllerDelegate {
+    func cafeViewControllerDidFinish(viewController: CafeViewController)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
 
 
 
